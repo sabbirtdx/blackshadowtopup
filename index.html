@@ -1,28 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Fire Top Up</title>
-</head>
-<body>
-    <h1>Free Fire Top Up</h1>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Black Shadow Topup</title>
+<style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+  }
+  header {
+    background-color: #00c853;
+    padding: 25px 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(0, 200, 83, 0.5);
+  }
+  main {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 15px;
+  }
+  h2 {
+    color: #00e676;
+    margin-bottom: 15px;
+    font-weight: 700;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #00e676;
+    padding-bottom: 8px;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  ul li {
+    background: #1e1e1e;
+    margin: 12px 0;
+    padding: 18px 20px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 6px rgba(0,230,118,0.4);
+    transition: transform 0.2s ease;
+  }
+  ul li:hover {
+    transform: scale(1.03);
+  }
+  .telegram-btn {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin: 40px auto 0;
+    padding: 16px 0;
+    background: linear-gradient(135deg, #00bfa5, #1de9b6);
+    color: #121212;
+    font-weight: 700;
+    font-size: 1.4rem;
+    border-radius: 30px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(29, 233, 182, 0.6);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  .telegram-btn:hover {
+    background: linear-gradient(135deg, #00e676, #00c853);
+    box-shadow: 0 8px 24px rgba(0, 230, 118, 0.8);
+  }
 
-    <form action="#" method="post">
-        <label for="player_id">Player ID:</label><br>
-        <input type="text" id="player_id" name="player_id" required><br><br>
-
-        <label for="top_up_amount">Select Top Up Amount:</label><br>
-        <select id="top_up_amount" name="top_up_amount" required>
-            <option value="100">100 Diamonds</option>
-            <option value="310">310 Diamonds</option>
-            <option value="520">520 Diamonds</option>
-            <option value="1060">1060 Diamonds</option>
-            <option value="2180">2180 Diamonds</option>
-            <option value="5600">5600 Diamonds</option>
-        </select><br><br>
-
-        <button type="submit">Top Up</button>
-    </form>
-</body>
-</html>
+  @media (max-width: 640px) {
+    header {
+      font-size: 1.7rem;
+      padding: 20px 5px;
+      letter-spacing: 2px;
+    }
+    main {
+      margin: 25px auto;
+    }
+    ul
