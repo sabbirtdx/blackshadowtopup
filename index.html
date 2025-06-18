@@ -1,101 +1,104 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sabbir Topup BD</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FF Diamond Topup</title>
   <style>
     body {
-      font-family: sans-serif;
-      background: #f5f5f5;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #111;
-      color: white;
+      font-family: 'Arial', sans-serif;
+      background: #f9f9f9;
       padding: 20px;
-      text-align: center;
+      color: #333;
     }
-    .container {
-      max-width: 500px;
-      margin: 20px auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #ccc;
-    }
+    h1 { color: #2a9d8f; text-align: center; }
+    .section { background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    label { display: block; margin-top: 10px; font-weight: bold; }
     input, select, button {
+      padding: 10px;
       width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border-radius: 5px;
+      margin-top: 5px;
       border: 1px solid #ccc;
+      border-radius: 8px;
     }
     button {
-      background: #28a745;
+      background: #2a9d8f;
       color: white;
       font-weight: bold;
-      border: none;
       cursor: pointer;
     }
     button:hover {
-      background: #218838;
+      background: #21867a;
     }
-    .footer {
+    .balance-box {
+      background: #dff0d8;
+      padding: 10px;
+      border-radius: 8px;
       text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      color: #666;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #3c763d;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Sabbir Topup BD</h1>
-    <p>Trusted FF Diamond Seller in Bangladesh</p>
-  </header>
 
-  <div class="container">
-    <label for="ffid">🎮 Free Fire UID</label>
-    <input type="text" id="ffid" placeholder="Enter your Free Fire ID" required />
+  <h1>🎮 FF Diamond Topup</h1>
 
-    <label for="amount">💎 Select Diamond Package</label>
-    <select id="amount">
-      <option value="100">100 Diamonds - ৳85</option>
-      <option value="210">210 Diamonds - ৳170</option>
-      <option value="530">530 Diamonds - ৳430</option>
-      <option value="1080">1080 Diamonds - ৳850</option>
-    </select>
-
-    <label for="payment">💳 Payment Method</label>
-    <select id="payment">
-      <option value="bkash">Bkash</option>
-      <option value="nagad">Nagad</option>
-      <option value="rocket">Rocket</option>
-    </select>
-
-    <label for="trxid">📩 Payment Transaction ID</label>
-    <input type="text" id="trxid" placeholder="Enter your payment trxID" required />
-
-    <button onclick="submitOrder()">📤 Submit Order</button>
+  <div class="balance-box">
+    🔐 আপনার বর্তমান ব্যালেন্স: ৳ <span id="userBalance">200</span>
   </div>
 
-  <div class="footer">
-    &copy; 2025 Sabbir Topup BD | Telegram: @YourTelegramBot
+  <div class="section">
+    <h2>➕ Add Balance</h2>
+    <label>Amount (৳):</label>
+    <input type="number" id="addAmount" placeholder="যেমন: 100">
+    <button onclick="addBalance()">Add via Bkash/Nagad</button>
+  </div>
+
+  <div class="section">
+    <h2>📤 UID দিয়ে টপআপ করুন</h2>
+    <label>Free Fire UID:</label>
+    <input type="text" id="uid" placeholder="আপনার FF UID লিখুন">
+
+    <label>Diamond Package:</label>
+    <select id="package">
+      <option value="25|25">25 💎 - ৳25</option>
+      <option value="50|45">50 💎 - ৳45</option>
+      <option value="115|84">115 💎 - ৳84</option>
+      <option value="240|160">240 💎 - ৳160</option>
+      <option value="355|236">355 💎 - ৳236</option>
+      <option value="480|311">480 💎 - ৳311</option>
+      <option value="610|395">610 💎 - ৳395</option>
+      <option value="850|550">850 💎 - ৳550</option>
+      <option value="1240|786">1240 💎 - ৳786</option>
+    </select>
+
+    <button onclick="submitTopup()">✅ Confirm Topup</button>
   </div>
 
   <script>
-    function submitOrder() {
-      const ffid = document.getElementById('ffid').value;
-      const amount = document.getElementById('amount').value;
-      const payment = document.getElementById('payment').value;
-      const trxid = document.getElementById('trxid').value;
+    let balance = 200;
 
-      if (!ffid || !trxid) {
-        alert("⚠️ Please fill all the required fields.");
-        return;
-      }
+    function addBalance() {
+      const amount = parseInt(document.getElementById('addAmount').value);
+      if (!amount || amount <= 0) return alert('সঠিক পরিমাণ টাকা লিখুন');
+      balance += amount;
+      document.getElementById('userBalance').innerText = balance;
+      alert('✅ টাকা যোগ হয়েছে: ৳' + amount);
+    }
 
-      // Telegram Bot Integration (Optional)
-      // You can send this data to Telegram using a bot or
+    function submitTopup() {
+      const uid = document.getElementById('uid').value.trim();
+      const packageVal = document.getElementById('package').value;
+      const [diamonds, price] = packageVal.split('|');
+      const taka = parseInt(price);
+
+      if (!uid || uid.length < 5) return alert('UID ঠিকভাবে লিখুন');
+      if (balance < taka) return alert('❌ পর্যাপ্ত ব্যালেন্স নেই!');
+
+      balance -= taka;
+      document.getElementById('userBalance').innerText = balance;
+
+      alert(`✅ ${diamonds} 💎 এর অর্ডার সফল! UID: ${uid}, কাটা হয়েছে ৳${taka}`);
+    }
