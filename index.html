@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FF Top-Up Demo</title>
+  <title>FF Top-Up Website Demo</title>
   <style>
     body {
       margin: 0; padding: 0; font-family: 'SolaimanLipi', sans-serif;
@@ -25,7 +25,7 @@
       cursor: pointer;
     }
     main {
-      max-width: 480px;
+      max-width: 600px;
       margin: 30px auto;
       background: rgba(0,0,0,0.5);
       padding: 20px;
@@ -37,31 +37,40 @@
     }
     .btn-group {
       display: flex;
-      justify-content: space-around;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
       margin-bottom: 25px;
     }
     button {
-      padding: 10px 18px;
+      padding: 12px 18px;
       font-size: 16px;
       font-weight: 700;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: transform 0.2s ease;
       color: #222;
+      min-width: 130px;
+      user-select: none;
     }
     button:hover {
-      opacity: 0.85;
+      transform: scale(1.05);
     }
-    .btn-add-balance {
-      background: #00e676;
-    }
-    .btn-uid-topup {
-      background: #ffea00;
-    }
+    .btn-add-balance { background: #00e676; }
+    .btn-uid-topup { background: #ffea00; }
+    .btn-evo-access { background: #ff7043; }
+    .btn-ff-membership { background: #2962ff; color: white; }
+    .btn-airdrop { background: #aa00ff; }
+    .btn-pubg-uc { background: #ff1744; color: white; }
+    .btn-mlbb-topup { background: #00b0ff; }
+    .btn-tiktok-coins { background: #ff4081; }
+    .btn-netflix-payment { background: #e50914; color: white; }
+
     .section {
       display: none;
       margin-top: 20px;
+      color: #fff;
     }
     .section.active {
       display: block;
@@ -105,6 +114,7 @@
       border-radius: 10px;
       font-weight: 700;
       cursor: pointer;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -117,8 +127,15 @@
   <main>
     <h2>Free Fire Top-Up Website Demo</h2>
     <div class="btn-group">
-      <button id="btnAddBalance" class="btn-add-balance">Add Balance</button>
-      <button id="btnUIDTopup" class="btn-uid-topup">UID Top-Up</button>
+      <button class="btn-add-balance" data-section="sectionAddBalance">Add Balance</button>
+      <button class="btn-uid-topup" data-section="sectionUIDTopup">UID Top-Up</button>
+      <button class="btn-evo-access" data-section="sectionEvoAccess">Evo Access</button>
+      <button class="btn-ff-membership" data-section="sectionFFMembership">Free Fire Membership</button>
+      <button class="btn-airdrop" data-section="sectionAirdrop">Airdrop</button>
+      <button class="btn-pubg-uc" data-section="sectionPUBGUC">PUBG UC</button>
+      <button class="btn-mlbb-topup" data-section="sectionMLBBTopup">MLBB Top-Up</button>
+      <button class="btn-tiktok-coins" data-section="sectionTikTokCoins">TikTok Coins</button>
+      <button class="btn-netflix-payment" data-section="sectionNetflixPayment">Netflix Payment</button>
     </div>
 
     <!-- Add Balance Section -->
@@ -133,7 +150,7 @@
       <label for="userUID">আপনার FF UID দিন:</label>
       <input type="text" id="userUID" placeholder="UID লিখুন" />
       <div>
-        <label>ডায়মন্ড প্যাকেজ নির্বাচন করুন:</label>
+        <label>ডায়মন্ড প্যাকেজ নির্বাচন করুন:</label>
         <div id="packageContainer">
           <span class="package-btn" data-diamond="25" data-price="25">25 💎 - ৳25</span>
           <span class="package-btn" data-diamond="50" data-price="45">50 💎 - ৳45</span>
@@ -148,32 +165,69 @@
       </div>
       <button class="confirm-btn" id="confirmUIDTopup">Confirm Top-Up</button>
     </section>
+
+    <!-- Evo Access Section -->
+    <section id="sectionEvoAccess" class="section">
+      <h3>Evo Access (Demo)</h3>
+      <p>এই সেকশনে Evo Access সম্পর্কিত ফিচার যোগ হবে।</p>
+    </section>
+
+    <!-- Free Fire Membership Section -->
+    <section id="sectionFFMembership" class="section">
+      <h3>Free Fire Membership (Demo)</h3>
+      <p>এই সেকশনে Free Fire মেম্বারশিপ বিক্রয় ফিচার থাকবে।</p>
+    </section>
+
+    <!-- Airdrop Section -->
+    <section id="sectionAirdrop" class="section">
+      <h3>Airdrop (Demo)</h3>
+      <p>এই সেকশনে Airdrop অফার দেখানো হবে।</p>
+    </section>
+
+    <!-- PUBG UC Section -->
+    <section id="sectionPUBGUC" class="section">
+      <h3>PUBG UC (Demo)</h3>
+      <p>PUBG UC ক্রয় বিক্রয়ের ফিচার এখানে থাকবে।</p>
+    </section>
+
+    <!-- MLBB Top-Up Section -->
+    <section id="sectionMLBBTopup" class="section">
+      <h3>MLBB Top-Up (Demo)</h3>
+      <p>Mobile Legends Bang Bang টপআপ অপশন এখানে থাকবে।</p>
+    </section>
+
+    <!-- TikTok Coins Section -->
+    <section id="sectionTikTokCoins" class="section">
+      <h3>TikTok Coins (Demo)</h3>
+      <p>TikTok কয়েন ক্রয় বিক্রয় এখানে করা যাবে।</p>
+    </section>
+
+    <!-- Netflix Payment Section -->
+    <section id="sectionNetflixPayment" class="section">
+      <h3>Netflix Payment (Demo)</h3>
+      <p>Netflix সাবস্ক্রিপশন পেমেন্ট অপশন এখানে থাকবে।</p>
+    </section>
   </main>
 
   <script>
-    // Elements
-    const btnAddBalance = document.getElementById('btnAddBalance');
-    const btnUIDTopup = document.getElementById('btnUIDTopup');
-    const sectionAddBalance = document.getElementById('sectionAddBalance');
-    const sectionUIDTopup = document.getElementById('sectionUIDTopup');
-    const confirmAddBalance = document.getElementById('confirmAddBalance');
-    const confirmUIDTopup = document.getElementById('confirmUIDTopup');
-    const addAmount = document.getElementById('addAmount');
-    const userUID = document.getElementById('userUID');
+    const buttons = document.querySelectorAll('.btn-group button');
+    const sections = document.querySelectorAll('.section');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Hide all sections
+        sections.forEach(sec => sec.classList.remove('active'));
+        // Show current section
+        const sectionId = btn.getAttribute('data-section');
+        document.getElementById(sectionId).classList.add('active');
+      });
+    });
+
+    // Initialize by showing Add Balance section
+    document.querySelector('button[data-section="sectionAddBalance"]').click();
+
+    // Package selection logic (for UID Top-Up)
     const packageContainer = document.getElementById('packageContainer');
-
-    // Initial State
-    function showSection(section) {
-      sectionAddBalance.classList.remove('active');
-      sectionUIDTopup.classList.remove('active');
-      section.classList.add('active');
-    }
-    showSection(sectionAddBalance);
-
-    btnAddBalance.onclick = () => showSection(sectionAddBalance);
-    btnUIDTopup.onclick = () => showSection(sectionUIDTopup);
-
-    // Package selection
     let selectedPackage = null;
     packageContainer.querySelectorAll('.package-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -187,19 +241,19 @@
     });
 
     // Confirm Add Balance
-    confirmAddBalance.onclick = () => {
-      const amount = addAmount.value;
+    document.getElementById('confirmAddBalance').onclick = () => {
+      const amount = document.getElementById('addAmount').value;
       if(amount && amount >= 10) {
         alert(`আপনি ৳${amount} ব্যালেন্স যোগ করতে যাচ্ছেন। (ডেমো)`);
-        addAmount.value = '';
+        document.getElementById('addAmount').value = '';
       } else {
         alert('দয়া করে বৈধ টাকা প্রবেশ করান (কমপক্ষে ৳10)');
       }
     };
 
     // Confirm UID Top-Up
-    confirmUIDTopup.onclick = () => {
-      const uid = userUID.value.trim();
+    document.getElementById('confirmUIDTopup').onclick = () => {
+      const uid = document.getElementById('userUID').value.trim();
       if(!uid) {
         alert('অনুগ্রহ করে আপনার FF UID দিন');
         return;
@@ -209,7 +263,7 @@
         return;
       }
       alert(`UID: ${uid}\nপ্যাকেজ: ${selectedPackage.diamond} 💎\nমূল্য: ৳${selectedPackage.price}\n(ডেমো মোডে টপআপ চলছে)`);
-      userUID.value = '';
+      document.getElementById('userUID').value = '';
       selectedPackage = null;
       packageContainer.querySelectorAll('.package-btn').forEach(b => b.classList.remove('selected'));
     };
