@@ -1,104 +1,95 @@
-<!DOCTYPE html>
-<html lang="bn">
+<!-- SabbirTopupBD - Free Fire UID Topup Website [Static Version with Basic JS] --><!DOCTYPE html><html lang="bn">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FF Diamond Topup</title>
+  <title>SabbirTopupBD - FF UID টপআপ</title>
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background: #f9f9f9;
-      padding: 20px;
-      color: #333;
-    }
-    h1 { color: #2a9d8f; text-align: center; }
-    .section { background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    label { display: block; margin-top: 10px; font-weight: bold; }
-    input, select, button {
-      padding: 10px;
-      width: 100%;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-    button {
-      background: #2a9d8f;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #21867a;
-    }
-    .balance-box {
-      background: #dff0d8;
-      padding: 10px;
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-      margin-bottom: 20px;
-      color: #3c763d;
-    }
+    body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background: #f2f2f2; }
+    header { background: #111; color: #fff; padding: 10px; text-align: center; font-size: 24px; }
+    nav { background: #fff; padding: 10px; display: flex; justify-content: space-around; flex-wrap: wrap; }
+    nav button { padding: 10px 15px; border: none; background: #2c3e50; color: white; border-radius: 5px; margin: 5px; cursor: pointer; }
+    nav button:hover { background: #1abc9c; }
+    .container { padding: 20px; max-width: 600px; margin: auto; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .section { display: none; }
+    .active { display: block; }
+    input, select { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+    button.action { background: #27ae60; color: white; width: 100%; font-size: 16px; }
+    .balance-box { text-align: center; font-weight: bold; background: #d1ecf1; color: #0c5460; padding: 10px; border-radius: 5px; }
+    footer { text-align: center; padding: 10px; font-size: 14px; color: #777; }
   </style>
 </head>
-<body>
-
-  <h1>🎮 FF Diamond Topup</h1>
-
-  <div class="balance-box">
-    🔐 আপনার বর্তমান ব্যালেন্স: ৳ <span id="userBalance">200</span>
-  </div>
-
-  <div class="section">
-    <h2>➕ Add Balance</h2>
-    <label>Amount (৳):</label>
-    <input type="number" id="addAmount" placeholder="যেমন: 100">
-    <button onclick="addBalance()">Add via Bkash/Nagad</button>
-  </div>
-
-  <div class="section">
-    <h2>📤 UID দিয়ে টপআপ করুন</h2>
-    <label>Free Fire UID:</label>
-    <input type="text" id="uid" placeholder="আপনার FF UID লিখুন">
-
-    <label>Diamond Package:</label>
+<body><header>💎 SabbirTopupBD</header><nav>
+  <button onclick="showSection('add')">➕ Add Balance</button>
+  <button onclick="showSection('uid')">🎯 UID টপআপ</button>
+  <button onclick="showSection('orders')">📄 অর্ডার হিস্টোরি</button>
+</nav><div class="container">
+  <div class="balance-box">বর্তমান ব্যালেন্স: ৳<span id="balance">0</span></div>  <div id="add" class="section active">
+    <h2>➕ ব্যালেন্স যোগ করুন</h2>
+    <input type="number" id="addAmount" placeholder="যেমনঃ 200">
+    <button class="action" onclick="addBalance()">Add Balance (Demo)</button>
+  </div>  <div id="uid" class="section">
+    <h2>🎯 UID দিয়ে টপআপ</h2>
+    <input type="text" id="uidInput" placeholder="আপনার Free Fire UID">
     <select id="package">
-      <option value="25|25">25 💎 - ৳25</option>
-      <option value="50|45">50 💎 - ৳45</option>
-      <option value="115|84">115 💎 - ৳84</option>
-      <option value="240|160">240 💎 - ৳160</option>
-      <option value="355|236">355 💎 - ৳236</option>
-      <option value="480|311">480 💎 - ৳311</option>
-      <option value="610|395">610 💎 - ৳395</option>
-      <option value="850|550">850 💎 - ৳550</option>
-      <option value="1240|786">1240 💎 - ৳786</option>
+      <option value="25|25">25 💎 = 25 টাকা</option>
+      <option value="50|45">50 💎 = 45 টাকা</option>
+      <option value="115|84">115 💎 = 84 টাকা</option>
+      <option value="240|160">240 💎 = 160 টাকা</option>
+      <option value="355|236">355 💎 = 236 টাকা</option>
+      <option value="480|311">480 💎 = 311 টাকা</option>
+      <option value="610|395">610 💎 = 395 টাকা</option>
+      <option value="850|550">850 💎 = 550 টাকা</option>
+      <option value="1240|786">1240 💎 = 786 টাকা</option>
     </select>
-
-    <button onclick="submitTopup()">✅ Confirm Topup</button>
+    <button class="action" onclick="submitTopup()">Confirm Topup</button>
+  </div>  <div id="orders" class="section">
+    <h2>📄 অর্ডার হিস্টোরি</h2>
+    <ul id="orderList"></ul>
   </div>
+</div><footer>
+  &copy; 2025 SabbirTopupBD | Designed for FF Gamers 💚
+</footer><script>
+  let balance = 0;
+  const orders = [];
 
-  <script>
-    let balance = 200;
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
 
-    function addBalance() {
-      const amount = parseInt(document.getElementById('addAmount').value);
-      if (!amount || amount <= 0) return alert('সঠিক পরিমাণ টাকা লিখুন');
-      balance += amount;
-      document.getElementById('userBalance').innerText = balance;
-      alert('✅ টাকা যোগ হয়েছে: ৳' + amount);
-    }
+  function addBalance() {
+    const amt = parseInt(document.getElementById('addAmount').value);
+    if (!amt || amt <= 0) return alert('সঠিক পরিমাণ দিন');
+    balance += amt;
+    document.getElementById('balance').innerText = balance;
+    alert('৳' + amt + ' ব্যালেন্স যোগ হয়েছে');
+    document.getElementById('addAmount').value = '';
+  }
 
-    function submitTopup() {
-      const uid = document.getElementById('uid').value.trim();
-      const packageVal = document.getElementById('package').value;
-      const [diamonds, price] = packageVal.split('|');
-      const taka = parseInt(price);
+  function submitTopup() {
+    const uid = document.getElementById('uidInput').value.trim();
+    const [diamonds, price] = document.getElementById('package').value.split('|');
+    const taka = parseInt(price);
 
-      if (!uid || uid.length < 5) return alert('UID ঠিকভাবে লিখুন');
-      if (balance < taka) return alert('❌ পর্যাপ্ত ব্যালেন্স নেই!');
+    if (!uid || uid.length < 5) return alert('UID সঠিক নয়');
+    if (balance < taka) return alert('ব্যালেন্স কম আছে');
 
-      balance -= taka;
-      document.getElementById('userBalance').innerText = balance;
+    balance -= taka;
+    document.getElementById('balance').innerText = balance;
+    orders.push(`✅ UID: ${uid} → ${diamonds} 💎 = ৳${taka}`);
+    renderOrders();
+    alert('Topup অর্ডার সফলভাবে প্লেস হয়েছে');
+    document.getElementById('uidInput').value = '';
+  }
 
-      alert(`✅ ${diamonds} 💎 এর অর্ডার সফল! UID: ${uid}, কাটা হয়েছে ৳${taka}`);
-    }
+  function renderOrders() {
+    const ol = document.getElementById('orderList');
+    ol.innerHTML = '';
+    orders.forEach(o => {
+      const li = document.createElement('li');
+      li.innerText = o;
+      ol.appendChild(li);
+    });
+  }
+</script></body>
+</html>
